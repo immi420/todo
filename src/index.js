@@ -1,11 +1,12 @@
 const express =require('express');
 const mongoose=require('mongoose');
+require('dotenv').config();
 
 const app = express();
 app.use(express.json());
-const port=3000;
+const port= 3000;
 
-mongoose.connect('mongodb+srv://imtiaz:test123@cluster.s17ywo8.mongodb.net/?retryWrites=true&w=majority');
+mongoose.connect(process.env.MONGODB_URI);
 const db=mongoose.connection;
 db.on('error',console.error.bind(console,'MongoDB connection error'));
 db.once('open',()=>{
